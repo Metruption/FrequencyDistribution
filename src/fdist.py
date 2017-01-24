@@ -24,8 +24,10 @@ class DataClass:
 	Yeah, this is a bad name. But the stat professor just calls it a "class".
 	'''
 	def __init__(self, start, width):
-		self.start = start - .5
-		self.end = width + start + .5
+		self.start = start
+		self.end = width + start - 1
+		self.min = self.start - .5
+		self.max = self.end + .5
 		self.midpoint = mean([self.start, self.end])
 		self.width = width
 		self.members = []
@@ -40,7 +42,7 @@ class DataClass:
 		if data_point is in this class adds it to this class and returns true
 		otherwise returns false
 		'''
-		if data_point >= self.start and data_point < self.end:
+		if data_point >= self.min and data_point < self.max:
 			self.members.append(data_point)
 			self.members.sort()
 			return True
@@ -48,7 +50,7 @@ class DataClass:
 			return False
 
 	def to_string(self):
-		return "Bounds:\n    Start:{} End:{}\nSize: {}\n".format(self.start,self.end,len(self.members))
+		return "Bounds:\n    Start:{} End:{}\n   Min:{} Max:{}\nSize: {}\n".format(self.start,self.end,self.min,self.max,len(self.members))
 
 
 
@@ -64,3 +66,8 @@ class FrequencyDistribution:
 				for class_ in self.classes:
 					if class_.add(data_point):
 						break
+
+
+	def to_string(self):
+		for i in range(len(self.classes)):
+			print("Class{}:\n{}".format(i,self.classes[i].to_string()))
