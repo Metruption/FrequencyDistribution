@@ -50,7 +50,7 @@ class DataClass:
 			return False
 
 	def to_string(self):
-		return "Bounds:\n    Start:{} End:{}\n   Min:{} Max:{}\nSize: {}\n".format(self.start,self.end,self.min,self.max,len(self.members))
+		return "Bounds:\n    Start:{} End:{}\n    Min:{} Max:{}\nSize: {}\n".format(self.start,self.end,self.min,self.max,len(self.members))
 
 
 
