@@ -60,6 +60,8 @@ class FrequencyDistribution:
 			self.numclasses = numclasses
 			self.dataset.sort()
 			self.class_size = ceil((max(dataset)-min(dataset))/numclasses)
+			if max(dataset) > min(dataset) + numclasses*class_size:
+				class_size = class_size + 1
 			self.classes = [DataClass(min(dataset) + i*self.class_size, self.class_size) for i in range(numclasses)]
 			
 			for data_point in self.dataset: #@todo(aaron): make this more efficent
